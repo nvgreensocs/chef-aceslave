@@ -45,7 +45,8 @@ ruby_block "compile ACESlave" do
   block do
     IO.popen( <<-EOH
        cd /vagrant/ModelLibrary/ACESlave
-       scons
+#       scons NOTHING TO DO - HEADER ONLY
+	   
      EOH
    ) { |f|  f.each_line { |line| puts line } }
   end
