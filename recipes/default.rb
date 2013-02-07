@@ -41,15 +41,12 @@ end
 
 
 
-ruby_block "compile ACESlave" do
-  block do
-    IO.popen( <<-EOH
+bash "Compile ACESlave" do
+  code <<-EOH
        cd #{node[:prefix]}/ModelLibrary/ACESlave
 #       scons NOTHING TO DO - HEADER ONLY
 	   
      EOH
-   ) { |f|  f.each_line { |line| puts line } }
-  end
 #  creates "#{node[:prefix]}/ModelLibrary/ACESlave/lib/ACESlave.so"
 end
 
