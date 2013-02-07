@@ -12,8 +12,8 @@
 # 
 # ENDLICENSETEXT
 
-package "build-essential"
-package "scons"
+#add this to your versions scrip
+#package "scons"
 
 ENV['http_proxy'] = Chef::Config[:http_proxy]
 
