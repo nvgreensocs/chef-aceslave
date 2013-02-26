@@ -25,7 +25,7 @@ end
 bash "Create ACESlave" do
   code <<-EOH
 # need to specify branch
-    git clone  git://git.greensocs.com/ACESlave.git #{node[:prefix]}/ModelLibrary/ACESlave
+    git clone git://projects.greensocs.com/models/aceslave.git #{node[:prefix]}/ModelLibrary/ACESlave
   EOH
   creates "#{node[:prefix]}/ModelLibrary/ACESlave"
   environment ({ 'http_proxy' => Chef::Config[:http_proxy] })
