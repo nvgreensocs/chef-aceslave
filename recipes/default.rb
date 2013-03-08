@@ -24,11 +24,15 @@ end
 
 bash "Create ACESlave" do
   code <<-EOH
+#this should read in the global profile stuff
 # need to specify branch
     git clone git://projects.greensocs.com/models/aceslave.git #{node[:prefix]}/ModelLibrary/ACESlave
   EOH
   creates "#{node[:prefix]}/ModelLibrary/ACESlave"
-  environment ({ 'http_proxy' => Chef::Config[:http_proxy] })
+  if Chef::Config[:http_proxy]
+    environment ({ 'http_proxy' => Chef::Config[:http_proxy] })
+    environment ({ 'GIT_PROXY_COMMAND' => "/tmp/gitproxy" })
+  end
 end
 
 bash "Update ACESlave" do
@@ -36,7 +40,10 @@ bash "Update ACESlave" do
     cd #{node[:prefix]}/ModelLibrary/ACESlave
     git pull origin master
   EOH
-  environment ({ 'http_proxy' => Chef::Config[:http_proxy] })
+  if Chef::Config[:http_proxy]
+    environment ({ 'http_proxy' => Chef::Config[:http_proxy] })
+    environment ({ 'GIT_PROXY_COMMAND' => "/tmp/gitproxy" })
+  end
 end
 
 
