@@ -29,10 +29,6 @@ bash "Create ACESlave" do
     git clone git://projects.greensocs.com/models/aceslave.git #{node[:prefix]}/ModelLibrary/ACESlave
   EOH
   creates "#{node[:prefix]}/ModelLibrary/ACESlave"
-  if Chef::Config[:http_proxy]
-    environment ({ 'http_proxy' => Chef::Config[:http_proxy] })
-    environment ({ 'GIT_PROXY_COMMAND' => "/tmp/gitproxy" })
-  end
 end
 
 bash "Update ACESlave" do
@@ -40,10 +36,6 @@ bash "Update ACESlave" do
     cd #{node[:prefix]}/ModelLibrary/ACESlave
     git pull origin master
   EOH
-  if Chef::Config[:http_proxy]
-    environment ({ 'http_proxy' => Chef::Config[:http_proxy] })
-    environment ({ 'GIT_PROXY_COMMAND' => "/tmp/gitproxy" })
-  end
 end
 
 
