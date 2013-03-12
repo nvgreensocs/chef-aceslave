@@ -38,7 +38,7 @@ bash "Update ACESlave" do
   for i in #{node[:prefix]}/bash.profile.d/*; do . $i; done
 
     cd #{node[:prefix]}/ModelLibrary/ACESlave
-#    git pull origin master
+    git pull origin master
     git reset --hard $version_aceslave
 
   EOH
