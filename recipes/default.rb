@@ -24,6 +24,8 @@ end
 
 bash "Create ACESlave" do
   code <<-EOH
+  for i in #{node[:prefix]}/bash.profile.d/*; do . $i; done
+
 #this should read in the global profile stuff
 # need to specify branch
     git clone git://projects.greensocs.com/models/aceslave.git #{node[:prefix]}/ModelLibrary/ACESlave
@@ -33,8 +35,12 @@ end
 
 bash "Update ACESlave" do
   code <<-EOH
+  for i in #{node[:prefix]}/bash.profile.d/*; do . $i; done
+
     cd #{node[:prefix]}/ModelLibrary/ACESlave
-    git pull origin master
+#    git pull origin master
+    git reset --hard $version_aceslave
+
   EOH
 end
 
@@ -42,6 +48,8 @@ end
 
 bash "Compile ACESlave" do
   code <<-EOH
+  for i in #{node[:prefix]}/bash.profile.d/*; do . $i; done
+
        cd #{node[:prefix]}/ModelLibrary/ACESlave
 #       scons NOTHING TO DO - HEADER ONLY
 	   
